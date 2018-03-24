@@ -14,48 +14,29 @@ public class Main {
   public static void main(String[] args) {
     Player firstPlayer = new Player(getPlayerName(), PlayerConstants.X_PLAYER_SIGN);
     Player secondPlayer = new Player(getPlayerName(), PlayerConstants.O_PLAYER_SIGN);
-    firstPlayer.setOpponent(secondPlayer);
-    secondPlayer.setOpponent(firstPlayer);
     GameBoard gameBoard = new GameBoard();
 
     Game game = new Game(firstPlayer, secondPlayer, gameBoard);
     boolean gameEnded = false;
+    System.out.println("Rozpoczyna gracz " + game.getCurrentPlayer());
     while (!gameEnded) {
       String move = scanner.next();
       GameStatus gameStatus = game.playGame(move);
+      gameBoard.print();
       switch (gameStatus) {
-        case CORRECT_MOVE: {
-          break;
-        }
         case BAD_MOVE: {
-
-        }
-        case WINNER:
-          System.out.println("GAME ENDED");
+          System.out.println("Zly ruch - wybierz jeszcze raz");
           break;
+        }
+        case WINNER: {
+          gameEnded = true;
+          System.out.println("Gra zakończyła sie sukcesem. Gratulacje, " + game.getCurrentPlayer());
+          break;
+        }
+        case CORRECT_MOVE: {
+          System.out.println("Teraz kolej gracza: " + game.getCurrentPlayer() + "\n");
+        }
       }
     }
-//    //////////////////////////////////////////////////////////////////
-//    boolean currentPlayer = false;
-//    char playerSign = 'X';
-//    System.out.println("Rozpoczyna gracz" + playerSign);
-//    while (!gameEnded) {
-//      System.out.println("\nKolej gracza " + playerSign + ". Podaj pozycje [0-8]");
-//      String position = scanner.next();
-//      if (gameBoard.isValidMove(position, playerSign)) {
-//        boolean isWinner = gameBoard.add(position, playerSign);
-//        currentPlayer = !currentPlayer;
-//        gameEnded = isWinner;
-//        gameBoard.print();
-//        if (gameEnded) {
-//          break;
-//        }
-//        playerSign = !currentPlayer ? 'X' : '0';
-//
-//      } else {
-//        System.out.println("Zla pozycja. Podaj jeszcze raz");
-//      }
-//    }
-//    System.out.println("Wygral gracz" + playerSign);
-//  }
+  }
 }

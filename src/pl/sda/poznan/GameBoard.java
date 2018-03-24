@@ -41,25 +41,30 @@ public class GameBoard {
   }
 
   public boolean isWinningMove(char playerSign) {
-    return checkColumns(playerSign) || checkRows(playerSign) || chechDiagonals(playerSign);
+    return checkColumns() || checkRows() || checkDiagonals(playerSign);
   }
 
-  private boolean checkRows(char playerSign) {
-    return board[0][0] == playerSign && board[0][1] == playerSign && board[0][2] == playerSign ||
-        board[1][0] == playerSign && board[1][1] == playerSign && board[1][2] == playerSign ||
-        board[2][0] == playerSign && board[2][1] == playerSign && board[2][2] == playerSign;
+  private boolean checkRows() {
+    for (int i = 0; i < 3; i++) {
+      if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  private boolean checkColumns(char playerSign) {
-    return board[0][0] == playerSign && board[1][0] == playerSign && board[2][0] == playerSign ||
-        board[0][1] == playerSign && board[1][1] == playerSign && board[2][1] == playerSign ||
-        board[0][2] == playerSign && board[1][2] == playerSign && board[2][2] == playerSign;
+  private boolean checkColumns() {
+    for (int i = 0; i < 3; i++) {
+      if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  private boolean chechDiagonals(char playerSign) {
-    return ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) && board[0][0] == playerSign)
-        ||
-        ((board[0][2] == board[1][1] && board[1][1] == board[2][0]) && board[0][2] == playerSign);
+  private boolean checkDiagonals(char playerSign) {
+    return (board[0][0] == board[1][1] && board[1][1] == board[2][2]  ||
+        board[0][2] == board[1][1] && board[1][1] == board[2][0]) && board[1][1] != 0;
   }
 
 }

@@ -6,7 +6,6 @@ public class Player {
   private char sign;
   private Player opponent;
 
-
   public Player(String name, char sign) {
     this.name = name;
     this.sign = sign;
@@ -34,5 +33,10 @@ public class Player {
 
   public void setOpponent(Player opponent) {
     this.opponent = opponent;
+  }
+
+  @Override
+  public String toString() {
+    return this.name + " " + this.sign;
   }
 }

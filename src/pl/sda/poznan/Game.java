@@ -3,15 +3,13 @@ package pl.sda.poznan;
 public class Game {
 
   private Player currentPlayer;
-  private Player firstPlayer;
-  private Player secondPlayer;
   private GameBoard gameBoard;
 
   public Game(Player firstPlayer, Player secondPlayer, GameBoard gameBoard) {
-    this.firstPlayer = firstPlayer;
-    this.secondPlayer = secondPlayer;
     this.gameBoard = gameBoard;
     this.currentPlayer = firstPlayer;
+    firstPlayer.setOpponent(secondPlayer);
+    secondPlayer.setOpponent(firstPlayer);
   }
 
   public GameStatus playGame(String move) {
@@ -27,5 +25,7 @@ public class Game {
     }
   }
 
-
+  public Player getCurrentPlayer() {
+    return currentPlayer;
+  }
 }
