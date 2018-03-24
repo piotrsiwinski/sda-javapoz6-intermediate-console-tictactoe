@@ -25,7 +25,7 @@ public class Main {
       gameBoard.print();
       switch (gameStatus) {
         case BAD_MOVE: {
-          System.out.println("Zly ruch - wybierz jeszcze raz");
+          System.out.println("Wpisz liczbe od 0 do 8");
           break;
         }
         case WINNER: {
@@ -35,6 +35,10 @@ public class Main {
         }
         case CORRECT_MOVE: {
           System.out.println("Teraz kolej gracza: " + game.getCurrentPlayer() + "\n");
+          break;
+        }
+        case INVALID_INPUT:{
+          System.out.println("Bladny wartosc. Wybierz liczby z zakresu 0-8");
         }
       }
     }

@@ -22,11 +22,11 @@ public class GameBoard {
     }
   }
 
+
   /**
    * Metoda ktora sprawdza czy na danej pozycji mozna postawic znak
    */
-  public boolean isValidMove(String position) {
-    int number = Integer.parseInt(position);
+  public boolean isValidMove(int number) {
     if (number < 0 || number > 8) {
       return false;
     }
