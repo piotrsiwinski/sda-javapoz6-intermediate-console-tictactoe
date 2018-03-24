@@ -13,7 +13,7 @@ public class Game {
   }
 
   public GameStatus playGame(String move) {
-    if (!gameBoard.isValidMove(move, currentPlayer.getSign())) {
+    if (!gameBoard.isValidMove(move)) {
       return GameStatus.BAD_MOVE;
     }
     boolean isWinner = gameBoard.add(move, currentPlayer.getSign());
